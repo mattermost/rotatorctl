@@ -1,0 +1,11 @@
+module github.com/mattermost/rotatorctl
+
+go 1.16
+
+require (
+	github.com/kr/pretty v0.1.0
+	github.com/mattermost/rotator v0.1.2
+	github.com/pkg/errors v0.9.1
+	github.com/sirupsen/logrus v1.8.1
+	github.com/spf13/cobra v1.1.3
+)
