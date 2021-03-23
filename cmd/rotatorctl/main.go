@@ -22,10 +22,6 @@ func main() {
 	}
 }
 
-func init() {
-	rootCmd.PersistentFlags().Bool("dry-run", false, "When set to true, only print the API request without sending it.")
-}
-
 func printJSON(data interface{}) error {
 	encoder := json.NewEncoder(os.Stdout)
 	encoder.SetIndent("", "    ")
