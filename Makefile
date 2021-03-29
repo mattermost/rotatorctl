@@ -31,7 +31,15 @@ govet:
 
 .PHONY: fmt
 fmt: ## Run go fmt against code
+	@echo Running go fmt
 	go fmt ./...
+	@echo Go fmt success
+
+.PHONY: tests
+tests: ## Run go test against code
+	@echo Running go test
+	$(GO) test ./... -v
+	@echo Go test success
 
 # Build for linux distribution
 .PHONY: build
@@ -59,3 +67,9 @@ build-image:
 # Build for all distros
 .PHONY: distros
 distros: build build-mac build-image
+
+# Cut a release
+.PHONY: release
+release:
+	@echo Cut a release
+	sh ./scripts/release.sh
