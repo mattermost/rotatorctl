@@ -1,5 +1,7 @@
+#! /bin/bash
+
 # Usage: sh notify.sh
-#!/bin/bash
+
 REPO=$(echo $GITHUB_CONTEXT | jq -r '.repository')
 TAGVERSION=$(echo $GITHUB_CONTEXT | jq -r '.event.release.tag_name')
 TAGURL=$(echo $GITHUB_CONTEXT | jq -r '.event.release.html_url')
