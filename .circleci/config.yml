@@ -1,0 +1,51 @@
+version: 2.1
+
+executors:
+  default:
+    docker:
+      - image: circleci/golang:1.16.1
+    working_directory: /go/src/github.com/mattermost/rotatorctl
+
+jobs:
+  check-style:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          command: |
+            make check-style
+  go-fmt:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          command: |
+            make fmt
+  tests:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          command: |
+            make tests
+  release:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo apt update && sudo apt install hub
+            GO111MODULE=on go get k8s.io/release/cmd/release-notes
+            make release
+workflows:
+    push-branch:
+      jobs:
+        - check-style
+        - go-fmt
+        - tests
+    publish-github-release:
+      jobs:
+        - release:
+            filters:
+              tags:
+                only: /v[0-9]+(\.[0-9]+)*/
