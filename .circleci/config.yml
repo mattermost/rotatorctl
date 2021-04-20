@@ -3,7 +3,7 @@ version: 2.1
 executors:
   default:
     docker:
-      - image: circleci/golang:1.15.11
+      - image: circleci/golang:1.16.3
     working_directory: /go/src/github.com/mattermost/rotatorctl
 
 jobs:
