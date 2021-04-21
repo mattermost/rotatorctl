@@ -45,13 +45,13 @@ tests: ## Run go test against code
 .PHONY: build
 build:
 	@echo Building Mattermost Rotatorctl for Linux
-	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 $(GO) build -gcflags all=-trimpath=$(PWD) -asmflags all=-trimpath=$(PWD) -a -installsuffix cgo -o build/_output/bin/$(APP)  ./cmd/$(APP)
+	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 $(GO) build -gcflags all=-trimpath=$(PWD) -asmflags all=-trimpath=$(PWD) -a -installsuffix cgo -mod=mod -o build/_output/bin/$(APP)  ./cmd/$(APP)
 
 # Build for MacOS distribution
 .PHONY: build-mac
 build-mac:
 	@echo Building Mattermost Rotatorctl for Mac
-	GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 $(GO) build -gcflags all=-trimpath=$(PWD) -asmflags all=-trimpath=$(PWD) -a -installsuffix cgo -o build/_output/bin/$(APP)-darwin  ./cmd/$(APP)
+	GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 $(GO) build -gcflags all=-trimpath=$(PWD) -asmflags all=-trimpath=$(PWD) -a -installsuffix cgo -mod=mod -o build/_output/bin/$(APP)-darwin  ./cmd/$(APP)
 
 # Builds the docker image
 .PHONY: build-image

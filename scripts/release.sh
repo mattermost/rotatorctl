@@ -3,6 +3,9 @@
 # Usage: sh release.sh
 # Note: To run this script locally you need to export environment variables CIRCLE_TAG and GITHUB_TOKEN.
 
+# Stop script on first error
+set -e
+
 FUTURE_RELEASE_SHA=$(hub rev-parse HEAD)
 LATEST_RELEASE=$(hub release)
 LATEST_RELEASE_SHA=$(hub rev-parse ${LATEST_RELEASE})
