@@ -2,6 +2,9 @@
 
 # Usage: sh notify.sh
 
+# Stop script on first error
+set -e
+
 REPO=$(echo $GITHUB_CONTEXT | jq -r '.repository')
 TAGVERSION=$(echo $GITHUB_CONTEXT | jq -r '.event.release.tag_name')
 TAGURL=$(echo $GITHUB_CONTEXT | jq -r '.event.release.html_url')
