@@ -20,5 +20,9 @@ mv ./build/_output/docs/relnote_parsed.md ./build/_output/docs/relnote.md
 
 make build && make build-mac
 mv  ./build/_output/bin/rotatorctl ./build/_output/bin/rotatorctl-linux
-hub release create -d -a ./build/_output/bin/rotatorctl-linux -a ./build/_output/bin/rotatorctl-darwin --file ./build/_output/docs/relnote.md ${CIRCLE_TAG}
+echo "Debugging lines."
+pwd
+ls -lah ./build/_output/docs/
+ls -lah ./build/_output/bin/
+hub release create -d -F ./build/_output/docs/relnote.md -a ./build/_output/bin/rotatorctl-linux -a ./build/_output/bin/rotatorctl-darwin ${CIRCLE_TAG}
 rm -rf ./build/_output/
