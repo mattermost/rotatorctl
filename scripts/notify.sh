@@ -3,7 +3,7 @@
 # Usage: sh notify.sh
 
 # Stop script on first error
-set -e
+set -xe
 
 REPO=$(echo $GITHUB_CONTEXT | jq -r '.repository')
 TAGVERSION=$(echo $GITHUB_CONTEXT | jq -r '.event.release.tag_name')
