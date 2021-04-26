@@ -7,6 +7,13 @@ executors:
     working_directory: /go/src/github.com/mattermost/rotatorctl
 
 jobs:
+  check-modules:
+    executor: default
+    steps:
+      - checkout
+      - run:
+          command: |
+            make check-modules
   check-style:
     executor: default
     steps:
@@ -34,12 +41,13 @@ jobs:
       - checkout
       - run:
           command: |
-            sudo apt update && sudo apt install hub
+            sudo apt update && sudo apt install hub git
             GO111MODULE=on go get k8s.io/release/cmd/release-notes
             make release
 workflows:
     push-branch:
       jobs:
+        - check-modules
         - check-style
         - go-fmt
         - tests

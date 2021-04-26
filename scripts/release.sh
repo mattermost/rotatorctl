@@ -8,6 +8,10 @@ set -xe
 
 FUTURE_RELEASE_SHA=$(hub rev-parse HEAD)
 LATEST_RELEASE=$(hub release | head -n 1)
+# The following fixes the script to work in the case that there isn't a previous release in place.
+if [[ "$LATEST_RELEASE" == "" ]]; then
+  LATEST_RELEASE=$(git log --pretty=%H | tail -n 1)
+fi
 LATEST_RELEASE_SHA=$(hub rev-parse "${LATEST_RELEASE}")
 LATEST_RELEASE_NEXT_COMMIT_SHA=$(hub log "${LATEST_RELEASE}"..HEAD --oneline --pretty=%H | tail -n1)
 mkdir -p ./build/_output/docs/
