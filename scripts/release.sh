@@ -13,8 +13,8 @@ LATEST_RELEASE_NEXT_COMMIT_SHA=$(hub log "${LATEST_RELEASE}"..HEAD --oneline --p
 mkdir -p ./build/_output/docs/
 release-notes --org mattermost --repo rotatorctl --start-sha "${LATEST_RELEASE_NEXT_COMMIT_SHA}" --end-sha "${FUTURE_RELEASE_SHA}"  --output ./build/_output/docs/relnote.md --required-author "" --branch main
 cat ./build/_output/docs/relnote.md | sed '/docs.k8s.io/ d' | sed -e "s/\# Release notes for/${CIRCLE_TAG}/g" | sed -e "s/Changelog since/Changelog since ${LATEST_RELEASE}/g"> ./build/_output/docs/relnote_parsed.md
-echo -e "\n" >> ./build/_output/docs/relnote_parsed.md
-echo -e "_Thanks to all our contributors!_ \n" >> ./build/_output/docs/relnote_parsed.md
+echo "\n" >> ./build/_output/docs/relnote_parsed.md
+echo "_Thanks to all our contributors!_" >> ./build/_output/docs/relnote_parsed.md
 mv ./build/_output/docs/relnote_parsed.md ./build/_output/docs/relnote.md
 
 make build && make build-mac
