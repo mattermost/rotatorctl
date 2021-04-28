@@ -59,7 +59,9 @@ func newRotateCmd() *cobra.Command {
 	cmd.Flags().UintVar(&o.evictGracePeriod, "evict-grace-period", 600, "The pod eviction grace period when draining in seconds.")
 	cmd.Flags().UintVar(&o.waitBetweenRotations, "wait-between-rotations", 60, "Τhe time to wait between each rotation of a group of nodes.")
 	cmd.Flags().UintVar(&o.waitBetweenDrains, "wait-between-drains", 60, "The time to wait between each node drain in a group of nodes.")
-	cmd.MarkFlagRequired("cluster")
+	if err := cmd.MarkFlagRequired("cluster"); err != nil {
+		return nil
+	}
 
 	return cmd
 }
