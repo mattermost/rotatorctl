@@ -1,5 +1,6 @@
 .idea
 .vscode
+*.sw*
 build/_output/
 vendor/
 bin/*

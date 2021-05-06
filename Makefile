@@ -97,6 +97,12 @@ release:
 	@echo Cut a release
 	sh ./scripts/release.sh
 
+# Notify a release publish
+.PHONY: notify
+notify:
+	@echo Notify a release publish
+	sh ./scripts/notify.sh
+
 .PHONY: tidy
 tidy:
 	@echo Go mod tidy
